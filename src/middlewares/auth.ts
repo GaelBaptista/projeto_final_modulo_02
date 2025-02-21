@@ -2,15 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import AppError from "../utils/AppError";
 
-type dataJwt = JwtPayload & { userId: string };
+type DataJwt = JwtPayload & { userId: string; profile: string };
 
-export interface AuthRequest extends Request {
-  userId: string;
-}
-
-export
-const verifyToken = (
-  req: Request & { userId: string },
+export const verifyToken = (
+  req: Request,
   _res: Response,
   next: NextFunction
 ) => {
@@ -21,16 +16,18 @@ const verifyToken = (
       throw new AppError("Token não informado", 401);
     }
 
-    const data = jwt.verify(token, process.env.JWT_SECRET ?? "") as dataJwt
+    const data = jwt.verify(token, process.env.JWT_SECRET ?? "") as DataJwt;
 
-    req.userId = data.userId
+    // Fazendo um cast para o TypeScript reconhecer os novos campos
+    (req as any).userId = data.userId;
+    (req as any).userProfile = data.profile;
 
     next();
   } catch (error) {
     if (error instanceof Error) {
       next(new AppError(error.message, 401));
     } else {
-      next(new AppError("Unknown error", 401));
+      next(new AppError("Erro desconhecido", 401));
     }
   }
 };
