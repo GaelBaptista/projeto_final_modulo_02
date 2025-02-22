@@ -117,6 +117,49 @@ class UserController {
       next(error);
     }
   };
+  getById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { userId, profile } = req as any;
+
+      const userRepository = AppDataSource.getRepository(User);
+      const driverRepository = AppDataSource.getRepository(Driver);
+
+      // 📌 Busca o usuário pelo ID
+      const user = await userRepository.findOne({
+        where: { id },
+        select: ["id", "name", "status", "profile"],
+      });
+
+      if (!user) {
+        return next(new AppError("Usuário não encontrado.", 404));
+      }
+
+      let full_address = null;
+
+      if (user.profile === "DRIVER") {
+        const driver = await driverRepository.findOne({
+          where: { user: { id: user.id } },
+          select: ["full_address"],
+        });
+        full_address = driver?.full_address || null;
+      }
+
+      if (profile !== "ADMIN" && userId !== id) {
+        return next(new AppError("Acesso não autorizado.", 401));
+      }
+
+      res.status(200).json({
+        id: user.id,
+        name: user.name,
+        status: user.status,
+        profile: user.profile,
+        full_address,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new UserController();

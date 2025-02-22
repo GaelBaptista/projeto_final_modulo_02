@@ -7,5 +7,6 @@ const userRouter = Router();
 
 userRouter.post("/", verifyToken, isAdmin, UserController.create);
 userRouter.get("/", verifyToken, isAdmin, UserController.list);
+userRouter.get("/:id", verifyToken, UserController.getById);
 
 export default userRouter;
