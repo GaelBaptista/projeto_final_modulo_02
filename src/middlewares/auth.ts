@@ -18,9 +18,8 @@ export const verifyToken = (
 
     const data = jwt.verify(token, process.env.JWT_SECRET ?? "") as DataJwt;
 
-    // Fazendo um cast para o TypeScript reconhecer os novos campos
     (req as any).userId = data.userId;
-    (req as any).userProfile = data.profile;
+    (req as any).profile = data.profile;
 
     next();
   } catch (error) {

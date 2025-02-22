@@ -40,3 +40,27 @@
 [22-02-2025 03:25:29.927 PM] info: 	O servidor está rodando em http://localhost:3000
 [22-02-2025 03:25:41.645 PM] info: 	O servidor está rodando em http://localhost:3000
 [22-02-2025 03:28:30.152 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:32:48.372 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:43:54.100 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:44:02.833 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:49:12.196 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:49:27.728 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:55:39.784 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:31:09.928 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:31:17.987 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:48:12.293 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:48:16.405 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:48:41.894 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:48:47.501 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:48:55.150 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:49:23.031 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:49:42.251 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:49:46.313 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:52:07.728 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 04:52:10.146 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 05:01:50.469 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 05:02:00.390 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 05:02:08.727 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 05:02:13.958 PM] error: 	coluna "branchId" da relação "products" não existe
+[22-02-2025 05:09:59.639 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 05:10:08.834 PM] info: 	O servidor está rodando em http://localhost:3000

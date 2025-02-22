@@ -12,15 +12,17 @@ import { handleError } from "./middlewares/handleError";
 
 import authRouter from "./routes/auth.routes";
 import logger from "./config/winston";
+import productRouter from "./routes/product.routes";
 
 const app = express();
 
-app.use(cors()); // Permite que o express entenda requisições de outros domínios
+app.use(cors());
 
-app.use(express.json()); // Permite que o express entenda JSON
+app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/login", authRouter);
+app.use("/products", productRouter);
 
 app.get("/env", (req, res) => {
   res.json({
