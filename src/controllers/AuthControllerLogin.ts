@@ -36,7 +36,13 @@ class AuthController {
         { expiresIn: "1h" }
       );
 
-      res.status(200).json({ token });
+      res.status(200).json({
+        token,
+        user: {
+          name: user.name,
+          profile: user.profile,
+        },
+      });
     } catch (error) {
       next(error);
     }

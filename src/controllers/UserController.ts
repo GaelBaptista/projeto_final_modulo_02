@@ -41,7 +41,7 @@ class UserController {
         );
       }
 
-      // Validação de CPF/CNPJ
+      // aqui é a validaão de CPF/CNPJ
       if (profile === "DRIVER" && !cpf.isValid(document)) {
         return next(new AppError("CPF inválido.", 400));
       }
@@ -53,16 +53,16 @@ class UserController {
       const branchRepository = AppDataSource.getRepository(Branch);
       const driverRepository = AppDataSource.getRepository(Driver);
 
-      // Verifica se o email já existe
+      // aqui erifica se o email já existe
       const emailExistente = await userRepository.findOneBy({ email });
       if (emailExistente) {
         return next(new AppError("Email já cadastrado.", 409));
       }
 
-      // Hash da senha
+      // aqui tem o hash da senha
       const password_hash = await bcrypt.hash(password, 10);
 
-      // Criação do usuário
+      // aqui tem a criação do usuário
       const userCreated = userRepository.create({
         name,
         profile,
