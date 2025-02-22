@@ -37,3 +37,6 @@
 [22-02-2025 03:10:39.846 PM] error: 	sintaxe de entrada é inválida para tipo uuid: "1"
 [22-02-2025 03:16:56.995 PM] info: 	O servidor está rodando em http://localhost:3000
 [22-02-2025 03:17:17.880 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:25:29.927 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:25:41.645 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 03:28:30.152 PM] info: 	O servidor está rodando em http://localhost:3000

@@ -244,6 +244,32 @@ class UserController {
       next(error);
     }
   };
+  updateStatus = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+
+      const userRepository = AppDataSource.getRepository(User);
+
+      const user = await userRepository.findOne({ where: { id } });
+      if (!user) {
+        return next(new AppError("Usuário não encontrado.", 404));
+      }
+
+      user.status = !user.status;
+      await userRepository.save(user);
+
+      res.status(200).json({
+        message: `Status do usuário ${user.name} atualizado com sucesso!`,
+        user: {
+          id: user.id,
+          name: user.name,
+          status: user.status,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new UserController();
