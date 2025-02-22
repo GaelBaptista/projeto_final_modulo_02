@@ -8,5 +8,6 @@ const userRouter = Router();
 userRouter.post("/", verifyToken, isAdmin, UserController.create);
 userRouter.get("/", verifyToken, isAdmin, UserController.list);
 userRouter.get("/:id", verifyToken, UserController.getById);
+userRouter.put("/:id", verifyToken, UserController.update);
 
 export default userRouter;

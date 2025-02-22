@@ -125,7 +125,6 @@ class UserController {
       const userRepository = AppDataSource.getRepository(User);
       const driverRepository = AppDataSource.getRepository(Driver);
 
-      // 📌 Busca o usuário pelo ID
       const user = await userRepository.findOne({
         where: { id },
         select: ["id", "name", "status", "profile"],
@@ -155,6 +154,91 @@ class UserController {
         status: user.status,
         profile: user.profile,
         full_address,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+  update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { userId, profile } = req as any;
+      const {
+        name,
+        email,
+        password,
+        full_address,
+        profile: forbiddenProfile,
+        status,
+        created_at,
+        updated_at,
+      } = req.body;
+
+      const userRepository = AppDataSource.getRepository(User);
+      const driverRepository = AppDataSource.getRepository(Driver);
+      const branchRepository = AppDataSource.getRepository(Branch);
+
+      if (
+        forbiddenProfile ||
+        status !== undefined ||
+        created_at ||
+        updated_at
+      ) {
+        return next(
+          new AppError("Não é permitido atualizar estes campos.", 401)
+        );
+      }
+
+      const user = await userRepository.findOne({ where: { id } });
+      if (!user) {
+        return next(new AppError("Usuário não encontrado.", 404));
+      }
+
+      if (profile !== "ADMIN" && userId !== id) {
+        return next(new AppError("Acesso não autorizado.", 401));
+      }
+
+      if (name) user.name = name;
+      if (email) {
+        const emailExistente = await userRepository.findOneBy({ email });
+        if (emailExistente && emailExistente.id !== id) {
+          return next(new AppError("Email já cadastrado.", 409));
+        }
+        user.email = email;
+      }
+      if (password) user.password_hash = await bcrypt.hash(password, 10);
+
+      await userRepository.save(user);
+
+      if (full_address) {
+        if (user.profile === "DRIVER") {
+          const driver = await driverRepository.findOne({
+            where: { user: { id } },
+          });
+          if (driver) {
+            driver.full_address = full_address;
+            await driverRepository.save(driver);
+          }
+        } else if (user.profile === "BRANCH") {
+          const branch = await branchRepository.findOne({
+            where: { user: { id } },
+          });
+          if (branch) {
+            branch.full_address = full_address;
+            await branchRepository.save(branch);
+          }
+        }
+      }
+
+      res.status(200).json({
+        message: "Usuário atualizado com sucesso!",
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          profile: user.profile,
+          full_address,
+        },
       });
     } catch (error) {
       next(error);
