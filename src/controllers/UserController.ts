@@ -8,11 +8,39 @@ import AppError from "../utils/AppError";
 import { cpf, cnpj } from "cpf-cnpj-validator";
 
 class UserController {
-  create = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> => {
+  list = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { profile } = req.query;
+
+      const userRepository = AppDataSource.getRepository(User);
+
+      let users;
+      if (profile) {
+        const profileString = String(profile);
+
+        if (!["DRIVER", "BRANCH", "ADMIN"].includes(profileString)) {
+          return next(
+            new AppError("Perfil inválido. Use DRIVER, BRANCH ou ADMIN.", 400)
+          );
+        }
+
+        users = await userRepository.find({
+          where: { profile: profileString as "DRIVER" | "BRANCH" | "ADMIN" },
+          select: ["id", "name", "status", "profile"],
+        });
+      } else {
+        users = await userRepository.find({
+          select: ["id", "name", "status", "profile"],
+        });
+      }
+
+      res.status(200).json(users);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  create = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name, profile, email, password, document, full_address } =
         req.body;
@@ -41,7 +69,6 @@ class UserController {
         );
       }
 
-      // aqui é a validaão de CPF/CNPJ
       if (profile === "DRIVER" && !cpf.isValid(document)) {
         return next(new AppError("CPF inválido.", 400));
       }
@@ -53,16 +80,13 @@ class UserController {
       const branchRepository = AppDataSource.getRepository(Branch);
       const driverRepository = AppDataSource.getRepository(Driver);
 
-      // aqui erifica se o email já existe
       const emailExistente = await userRepository.findOneBy({ email });
       if (emailExistente) {
         return next(new AppError("Email já cadastrado.", 409));
       }
 
-      // aqui tem o hash da senha
       const password_hash = await bcrypt.hash(password, 10);
 
-      // aqui tem a criação do usuário
       const userCreated = userRepository.create({
         name,
         profile,

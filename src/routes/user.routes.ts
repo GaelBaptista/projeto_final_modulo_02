@@ -5,6 +5,7 @@ import { isAdmin } from "../middlewares/isAdmin";
 
 const userRouter = Router();
 
-userRouter.post("/", UserController.create);
+userRouter.post("/", verifyToken, isAdmin, UserController.create);
+userRouter.get("/", verifyToken, isAdmin, UserController.list);
 
 export default userRouter;
