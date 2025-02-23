@@ -69,3 +69,28 @@
 [22-02-2025 09:08:01.468 PM] info: 	O servidor está rodando em http://localhost:3000
 [22-02-2025 09:16:09.550 PM] info: 	O servidor está rodando em http://localhost:3000
 [22-02-2025 09:17:01.489 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 09:29:36.376 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:04:04.188 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:04:41.836 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:04:57.396 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:10:52.920 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:12:52.173 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:15:07.714 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:22:03.499 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:27:13.071 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:30:08.029 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:31:08.242 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:31:27.104 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:39:15.104 PM] error: 	sintaxe de entrada é inválida para tipo uuid: "a1b2c3d4-e5f6-7890-1234-56789abcdef"
+[22-02-2025 10:39:21.772 PM] error: 	sintaxe de entrada é inválida para tipo uuid: "a1b2c3d4-e5f6-7890-1234-56789abcdef"
+[22-02-2025 10:45:23.855 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:47:50.182 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:47:59.703 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:48:07.712 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 10:50:32.599 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 11:12:15.574 PM] error: 	coluna "destinationBranchId" da relação "movements" não existe
+[22-02-2025 11:25:53.777 PM] error: 	coluna "destinationBranchId" da relação "movements" não existe
+[22-02-2025 11:30:38.302 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 11:33:15.464 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 11:33:20.538 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 11:33:46.018 PM] info: 	O servidor está rodando em http://localhost:3000

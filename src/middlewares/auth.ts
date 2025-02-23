@@ -20,6 +20,8 @@ export const verifyToken = (
 
     (req as any).userId = data.userId;
     (req as any).profile = data.profile;
+    console.log("Middleware verifyToken -> userId:", data.userId);
+    console.log("Middleware verifyToken -> profile:", data.profile);
 
     next();
   } catch (error) {

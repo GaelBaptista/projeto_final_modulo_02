@@ -11,6 +11,9 @@ import productRouter from "./routes/product.routes";
 
 import { handleError } from "./middlewares/handleError";
 import logger from "./config/winston";
+import movementRouter from "./routes/movement.routes";
+
+import brancherRouter from "./routes/brancher.routes";
 
 const app = express();
 
@@ -20,6 +23,9 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/login", authRouter);
 app.use("/products", productRouter);
+app.use("/movements", movementRouter);
+
+app.use("/branches", brancherRouter);
 
 app.get("/env", (req, res) => {
   res.json({
