@@ -64,3 +64,8 @@
 [22-02-2025 05:02:13.958 PM] error: 	coluna "branchId" da relação "products" não existe
 [22-02-2025 05:09:59.639 PM] info: 	O servidor está rodando em http://localhost:3000
 [22-02-2025 05:10:08.834 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 05:27:56.834 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 09:07:47.611 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 09:08:01.468 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 09:16:09.550 PM] info: 	O servidor está rodando em http://localhost:3000
+[22-02-2025 09:17:01.489 PM] info: 	O servidor está rodando em http://localhost:3000

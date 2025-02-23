@@ -6,5 +6,6 @@ import { isBranch } from "../middlewares/isBrancher";
 const productRouter = Router();
 
 productRouter.post("/", verifyToken, isBranch, ProductController.create);
+productRouter.get("/", verifyToken, isBranch, ProductController.list);
 
 export default productRouter;

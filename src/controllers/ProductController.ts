@@ -51,6 +51,21 @@ class ProductController {
       next(error);
     }
   };
+
+  list = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const productRepository = AppDataSource.getRepository(Product);
+
+      const products = await productRepository.find({
+        relations: ["branch"],
+        select: ["id", "name", "amount", "description", "url_cover", "branch"],
+      });
+
+      res.status(200).json(products);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new ProductController();
