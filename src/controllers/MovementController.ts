@@ -122,6 +122,34 @@ class MovementController {
       next(error);
     }
   };
+
+  startMovement = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const movementRepository = AppDataSource.getRepository(Movement);
+
+      // Verifica se a movimentação existe
+      const movement = await movementRepository.findOne({
+        where: { id },
+        relations: ["destination_branch", "product"], // Inclui os dados relacionados
+      });
+
+      if (!movement) {
+        return next(new AppError("Movimentação não encontrada.", 404));
+      }
+
+      // Atualiza o status para "IN_PROGRESS"
+      movement.status = "IN_PROGRESS";
+      await movementRepository.save(movement);
+
+      res.status(200).json({
+        message: "Movimentação iniciada com sucesso!",
+        movement,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new MovementController();
