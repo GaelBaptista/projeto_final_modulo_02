@@ -80,6 +80,48 @@ class MovementController {
       next(error);
     }
   };
+  list = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { profile } = req as any;
+
+      if (!["BRANCH", "DRIVER"].includes(profile)) {
+        return next(
+          new AppError(
+            "Acesso não autorizado. Apenas FILIAL e MOTORISTA podem acessar.",
+            403
+          )
+        );
+      }
+
+      const movementRepository = AppDataSource.getRepository(Movement);
+
+      const movements = await movementRepository.find({
+        relations: ["destination_branch", "product"],
+        select: {
+          id: true,
+          quantity: true,
+          status: true,
+          created_at: true,
+          updated_at: true,
+          destination_branch: {
+            id: true,
+            full_address: true,
+          },
+          product: {
+            id: true,
+            name: true,
+            amount: true,
+            description: true,
+            url_cover: true,
+          },
+        },
+      });
+
+      res.status(200).json(movements);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new MovementController();
