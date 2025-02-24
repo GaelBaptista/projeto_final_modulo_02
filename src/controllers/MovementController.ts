@@ -4,6 +4,7 @@ import { Movement } from "../entities/Movement";
 import { Product } from "../entities/Products";
 import { Branch } from "../entities/Brancher";
 import AppError from "../utils/AppError";
+import { User } from "../entities/User";
 
 class MovementController {
   create = async (req: Request, res: Response, next: NextFunction) => {
@@ -45,6 +46,14 @@ class MovementController {
         );
       }
 
+      const destinationBranch = await branchRepository.findOne({
+        where: { id: destination_branch_id },
+      });
+
+      if (!destinationBranch) {
+        return next(new AppError("Filial de destino não encontrada.", 404));
+      }
+
       const product = await productRepository.findOne({
         where: { id: product_id, branch: originBranch },
       });
@@ -65,7 +74,7 @@ class MovementController {
       await productRepository.save(product);
 
       const movement = movementRepository.create({
-        destination_branch: { id: destination_branch_id },
+        destination_branch: destinationBranch,
         product,
         quantity,
       });
@@ -80,6 +89,7 @@ class MovementController {
       next(error);
     }
   };
+
   list = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { profile } = req as any;
@@ -122,28 +132,106 @@ class MovementController {
       next(error);
     }
   };
-
   startMovement = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const movementRepository = AppDataSource.getRepository(Movement);
+      const { userId } = req as any;
 
-      // Verifica se a movimentação existe
+      const movementRepository = AppDataSource.getRepository(Movement);
+      const userRepository = AppDataSource.getRepository(User);
+
       const movement = await movementRepository.findOne({
         where: { id },
-        relations: ["destination_branch", "product"], // Inclui os dados relacionados
+        relations: ["destination_branch", "product", "driver"],
       });
 
       if (!movement) {
         return next(new AppError("Movimentação não encontrada.", 404));
       }
 
-      // Atualiza o status para "IN_PROGRESS"
+      if (movement.status !== "PENDING") {
+        return next(
+          new AppError(
+            "A movimentação precisa estar pendente para ser iniciada.",
+            400
+          )
+        );
+      }
+
+      const driver = await userRepository.findOne({
+        where: { id: userId, profile: "DRIVER" },
+      });
+
+      if (!driver) {
+        return next(new AppError("Motorista não encontrado.", 404));
+      }
+
+      movement.driver = driver;
       movement.status = "IN_PROGRESS";
+
       await movementRepository.save(movement);
 
       res.status(200).json({
         message: "Movimentação iniciada com sucesso!",
+        movement,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+  finishMovement = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { userId } = req as any;
+
+      const movementRepository = AppDataSource.getRepository(Movement);
+      const productRepository = AppDataSource.getRepository(Product);
+
+      const movement = await movementRepository.findOne({
+        where: { id },
+        relations: ["destination_branch", "product", "driver"],
+      });
+
+      if (!movement) {
+        return next(new AppError("Movimentação não encontrada.", 404));
+      }
+
+      if (movement.status !== "IN_PROGRESS") {
+        return next(
+          new AppError(
+            "A movimentação precisa estar em progresso para ser finalizada.",
+            400
+          )
+        );
+      }
+
+      if (!movement.driver) {
+        return next(
+          new AppError("Nenhum motorista iniciou essa movimentação.", 400)
+        );
+      }
+
+      if (movement.driver.id !== userId) {
+        return next(
+          new AppError("Apenas o motorista que iniciou pode finalizar.", 403)
+        );
+      }
+
+      const newProduct = productRepository.create({
+        name: movement.product.name,
+        amount: movement.quantity,
+        description: movement.product.description,
+        url_cover: movement.product.url_cover,
+        branch: movement.destination_branch,
+      });
+
+      await productRepository.save(newProduct);
+
+      movement.status = "FINISHED";
+      await movementRepository.save(movement);
+
+      res.status(200).json({
+        message: "Movimentação finalizada com sucesso!",
         movement,
       });
     } catch (error) {

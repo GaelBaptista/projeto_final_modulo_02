@@ -100,3 +100,27 @@
 [23-02-2025 10:36:57.767 AM] info: 	O servidor está rodando em http://localhost:3000
 [23-02-2025 10:37:11.041 AM] info: 	O servidor está rodando em http://localhost:3000
 [23-02-2025 10:37:18.012 AM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:06:35.778 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:15:06.410 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:37:48.435 PM] error: 	inserção ou atualização em tabela "movements" viola restrição de chave estrangeira "FK_81a78601cc668877e02df50feff"
+[23-02-2025 09:40:23.668 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:40:39.472 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:41:18.251 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:49:55.541 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 09:50:00.685 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:08:53.245 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:09:14.305 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:11:47.354 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:12:57.092 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:14:10.921 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:17:23.267 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:21:01.394 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:21:42.412 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:21:59.293 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:22:15.129 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:23:16.889 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:35:51.133 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:36:04.493 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:37:19.309 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:37:30.134 PM] info: 	O servidor está rodando em http://localhost:3000
+[23-02-2025 10:37:51.923 PM] info: 	O servidor está rodando em http://localhost:3000

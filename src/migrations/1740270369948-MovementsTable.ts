@@ -29,6 +29,11 @@ export class MovementsTable1740270369948 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: "driver_id",
+            type: "uuid",
+            isNullable: true,
+          },
+          {
             name: "quantity",
             type: "int",
             isNullable: false,
@@ -70,6 +75,16 @@ export class MovementsTable1740270369948 implements MigrationInterface {
         referencedTableName: "products",
         referencedColumnNames: ["id"],
         onDelete: "CASCADE",
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      "movements",
+      new TableForeignKey({
+        columnNames: ["driver_id"],
+        referencedTableName: "users",
+        referencedColumnNames: ["id"],
+        onDelete: "SET NULL",
       })
     );
   }

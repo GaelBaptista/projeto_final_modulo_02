@@ -15,5 +15,11 @@ movementRouter.patch(
   isDriver,
   MovementController.startMovement
 );
+movementRouter.patch(
+  "/:id/end",
+  verifyToken,
+  isDriver,
+  MovementController.finishMovement
+);
 
 export default movementRouter;

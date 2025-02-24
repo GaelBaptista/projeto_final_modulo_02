@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Branch } from "./Brancher";
 import { Product } from "./Products";
+import { User } from "./User";
 
 @Entity("movements")
 export class Movement {
@@ -22,6 +23,10 @@ export class Movement {
   @ManyToOne(() => Product)
   @JoinColumn({ name: "product_id" })
   product: Product;
+
+  @ManyToOne(() => User, { nullable: true })
+  @JoinColumn({ name: "driver_id" })
+  driver: User | null;
 
   @Column({ type: "int" })
   quantity: number;
