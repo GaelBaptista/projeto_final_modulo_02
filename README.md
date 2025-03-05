@@ -1,9 +1,9 @@
-🚚 LogiFlow - Sistema de Gestão de Movimentações Logísticas
+🚚 VeloMed - Sistema de Gestão de Movimentações Logísticas
 Um sistema completo para cadastro de usuários, gerenciamento de filiais, motoristas, produtos e movimentações logísticas. Desenvolvido com Node.js, o sistema possui autenticação via JWT, controle de acesso por perfis de usuário, e operações seguras com validação de dados sensíveis.
 
 
 🛠️ Descrição do Projeto
-O LogiFlow foi desenvolvido para gerenciar a movimentação de produtos entre filiais, com controle de motoristas, status de movimentações e controle de estoque. Cada operação é validada com regras de negócio específicas, garantindo a integridade dos dados e a segurança do sistema.
+O VeloMed foi desenvolvido para gerenciar a movimentação de produtos entre filiais, com controle de motoristas, status de movimentações e controle de estoque. Cada operação é validada com regras de negócio específicas, garantindo a integridade dos dados e a segurança do sistema.
 
 O sistema é dividido em três perfis de usuário:
 
