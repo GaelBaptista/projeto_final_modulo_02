@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 import "reflect-metadata";
 import express from "express";
 import { AppDataSource } from "./data-source";
@@ -7,20 +6,26 @@ import { AppDataSource } from "./data-source";
 import cors from "cors";
 
 import userRouter from "./routes/user.routes";
+import authRouter from "./routes/auth.routes";
+import productRouter from "./routes/product.routes";
 
 import { handleError } from "./middlewares/handleError";
-
-import authRouter from "./routes/auth.routes";
 import logger from "./config/winston";
+import movementRouter from "./routes/movement.routes";
+
+import brancherRouter from "./routes/brancher.routes";
 
 const app = express();
 
-app.use(cors()); // Permite que o express entenda requisições de outros domínios
-
-app.use(express.json()); // Permite que o express entenda JSON
+app.use(cors());
+app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/login", authRouter);
+app.use("/products", productRouter);
+app.use("/movements", movementRouter);
+
+app.use("/branches", brancherRouter);
 
 app.get("/env", (req, res) => {
   res.json({
